@@ -282,7 +282,7 @@ module RSpotify
       url = "users/#{@id}/playlists?limit=#{limit}&offset=#{offset}"
       response = RSpotify.resolve_auth_request(@id, url)
       return response if RSpotify.raw_response
-      response['items'].map { |i| Playlist.new i }
+      response['items'].compact.map { |i| Playlist.new i }
     end
 
     # Remove tracks from the user’s “Your Music” library.
